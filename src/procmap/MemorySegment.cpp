@@ -1,5 +1,6 @@
 #include "procmap/MemorySegment.hpp"
 #include "procmap/Logger.hpp"
+#include <sys/sysmacros.h>
 
 namespace procmap {
 
