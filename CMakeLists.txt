@@ -8,7 +8,7 @@ set(CMAKE_VERBOSE_MAKEFILE OFF)
 
 # get list of source files
 file(GLOB_RECURSE procmap_src relative ${CMAKE_CURRENT_SOURCE_DIR} "src/*.cpp" "src/*c")
-add_library(procmap SHARED ${procmap_src})
+add_library(procmap STATIC ${procmap_src})
 
 set_property(TARGET procmap PROPERTY POSITION_INDEPENDENT_CODE on)
 
