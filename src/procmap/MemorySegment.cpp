@@ -6,15 +6,20 @@ namespace procmap {
 
 MemorySegment::MemorySegment(char *line) {
   int name_start = 0, name_end = 0;
-  unsigned long addr_start, addr_end;
-  char perms_str[8];
-  //printf("line: %s", line);
+  void * addr_start = nullptr;
+  void * addr_end = nullptr;
+  char perms_str[8] = {0};
 
-  // parse string
-  DIEIF(sscanf(line, "%lx-%lx %7s %lx %u:%u %lu %n%*[^\n]%n",
+  //printf("line: %s\n", line);
+
+int parsed = sscanf(line, "%p-%p %7s %lx %x:%x %lu %n%*[^\n]%n",
                      &addr_start, &addr_end, perms_str, &_offset,
                      &_deviceMajor, &_deviceMinor, &_inode,
-                     &name_start, &name_end) < 7,
+                     &name_start, &name_end);
+
+   //printf("parsed: %d\n", parsed);
+  // parse string
+  DIEIF(parsed < 7,
         "FAILED TO PARSE");
 
   // convert addresses
